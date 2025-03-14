@@ -10,7 +10,7 @@ This repository contains a simple data validator package built using python prog
 ## Installation
 - Clone the repository to your local machaine
 - ```
-    git clone <repository_url>
+    git clone https://github.com/Data-Epic/data-validator-Adenike-Awotunde.git
     cd Data_Validator_Package
     ```
   

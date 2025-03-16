@@ -63,14 +63,14 @@ class DataValidator:
         
         return bool(re.match(date_pattern, self.date, re.VERBOSE))
         
-        
-    # function to validate url
-    def validate_url(self, verbose = False):
-        """Validating url using regex"""
-        url_pattern = r"(?:https?://)?(?:www\.)?(?:[a-zA-Z0-9.-]+)\.[a-zA-Z]{2,}(?:/\S*)?"
-        if re.search(url_pattern,self.url):
+    # Function to validate url
+    def validate_url(self, verbose=False):
+        """Validates URL using regex."""
+        url_pattern = r"^(https?://)(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(/\S*)?$"
+    
+        if re.fullmatch(url_pattern, self.url):
             if verbose:
-                print('url is valid')
+                print("URL is valid")
             return True
         else:
             return False

@@ -10,12 +10,13 @@ from Data_Validator_Package.data_validator import DataValidator
 
 @pytest.fixture
 def test_DataValidator():
-    validator = DataValidator()
-    validator.set_email("awotundeadenike@outlook.com")
-    validator.set_phone_no("+2348092456756")
-    validator.set_date("1999-02-05")
-    validator.set_url("https://google.com")
-    return validator
+    """Fixture to initialize DataValidator with valid test data"""
+    return DataValidator(
+        email="awotundeadenike@outlook.com",
+        phone_no="+2348092456756",
+        date="05-02-1999",  
+        url="https://google.com"
+    )
 
 """Email Validation Tests"""
 # Test with a valid email

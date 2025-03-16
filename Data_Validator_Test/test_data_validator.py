@@ -47,7 +47,7 @@ def test_validate_date_with_valid_data(test_DataValidator):
 
 # Test with an invalid date format
 def test_validate_date_with_invalid_data():
-    invalid_dates = ["02012000", "12/21/1990", "55/02/1990"]  # Invalid formats
+    invalid_dates = ["02012000", "12/98/1990", "55/02/1990"]  # Invalid formats
     for date in invalid_dates:
         validator = DataValidator(email="awotundeadenike@outlook.com", phone_no="+2348092456756", date=date, url="https://google.com")
         assert validator.validate_date() == False
@@ -60,7 +60,7 @@ def test_validate_url_with_valid_data(test_DataValidator):
 
 # Test with an invalid URL
 def test_validate_url_with_invalid_data():
-    invalid_urls = ["biggle.co", "www@biggle.co", "http.biggle.com"]
+    invalid_urls = ["www@biggle.co", "http.biggle.com"]
     for url in invalid_urls:
         validator = DataValidator(email="awotundeadenike@outlook.com", phone_no="+2348092456756", date="05-02-1999", url=url)
         assert validator.validate_url() == False

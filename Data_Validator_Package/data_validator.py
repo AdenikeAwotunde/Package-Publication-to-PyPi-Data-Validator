@@ -41,36 +41,33 @@ class DataValidator:
             return False
         
         
-         # function to validate date
+    # function to validate date
     def validate_date(self):
         # return false if no date is provided
         if not self.date:
             return False
         """Validates the date format using regex
         date formats supported : DD/MM/YYYY, DD-MM-YYY"""
+        
         date_pattern = r"""
-        ^(  
-            (?:31[-/](?:0?[13578]|1[02])) | #Months with 31 days
-            (?:30[-/](?:0?[13-9]|1[0-2])) | #Months with 30 days
-            (?:29[-/](?!02)0?[1-9]|1[0-2]) |# Months with 29 days
-            (?:28[-/]02) | # Feb with 28days
-            (?:29[-/]02[-/](?:(?:1[6-9]|[2-9]\d)(?:0[48]|[2468][048]|[13579][26])|2000)) #29 days in feb for leap year
-        )[-/]\d{4}$  
-        """
-        
-        if not re.match(date_pattern, self.date):
-            return False
-        
+    ^(
+        (?:31[-/](?:0?[13578]|1[02])) |      # Months with 31 days
+        (?:30[-/](?:0?[13-9]|1[0-2])) |      # Months with 30 days
+        (?:29[-/]02[-/](?:(?:1[6-9]|[2-9]\d) # 29 days in Feb for leap year
+            (?:0[48]|[2468][048]|[13579][26])|2000)) |
+        (?:0?[1-9]|1\d|2[0-8])[-/]02 |       # Feb with 28 days
+        (?:0?[1-9]|[12]\d|3[01])[-/](?:0?[1-9]|1[0-2]) # General valid dates
+    )[-/]\d{4}$                              # End with 4-digit year
+"""
         return bool(re.match(date_pattern, self.date, re.VERBOSE))
-        
+    
     # Function to validate url
     def validate_url(self, verbose=False):
-        """Validates URL using regex."""
-        url_pattern = r"^(https?://)(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(/\S*)?$"
-    
-        if re.fullmatch(url_pattern, self.url):
+        """Validates a URL using regex."""
+        url_pattern = r"^(https?://)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(/\S*)?$"
+        
+        if re.match(url_pattern, self.url):
             if verbose:
                 print("URL is valid")
             return True
-        else:
-            return False
+        return False
